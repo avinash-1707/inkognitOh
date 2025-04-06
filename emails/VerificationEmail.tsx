@@ -19,7 +19,7 @@ import {
     return (
       <Html lang="en" dir="ltr">
         <Head>
-          <title>Verification Code</title>
+          <title>inkognitOh! | Verification Code</title>
           <Font
             fontFamily="Roboto"
             fallbackFontFamily="Verdana"
