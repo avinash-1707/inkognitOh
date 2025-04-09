@@ -13,7 +13,6 @@ import { ApiResponse } from "@/types/ApiResponse";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -49,10 +48,12 @@ const page = () => {
         setUsernameMessage("");
       }
       try {
-        const response = await axios.get(
+        const response = await axios.get<ApiResponse>(
           `/api/check-username-unique?username=${username}`
         );
-        setUsernameMessage(response.data.message);
+        const usernameMessage = response.data.message;
+        console.log(usernameMessage);
+        setUsernameMessage(usernameMessage);
       } catch (error) {
         const axiosError = error as AxiosError<ApiResponse>;
         setUsernameMessage(
@@ -173,12 +174,12 @@ const page = () => {
           </Form>
           <div className="text-center mt-4">
             <p>
-              Not a member yet?{" "}
+              Already a member?{" "}
               <Link
-                href="/sign-up"
+                href="/sign-in"
                 className="text-blue-600 hover:text-blue-800"
               >
-                Sign up
+                Sign in
               </Link>
             </p>
           </div>
