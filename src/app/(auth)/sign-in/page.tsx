@@ -38,6 +38,7 @@ const SignInPage = () => {
       identifier: data.identifier,
       password: data.password,
     });
+    console.log(result);
     if (result?.error) {
       toast("Login failed!", { description: "Incorrect username or password" });
     }
