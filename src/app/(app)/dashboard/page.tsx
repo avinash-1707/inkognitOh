@@ -20,7 +20,7 @@ const UserDashboard = () => {
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
 
   const handleDeleteMessage = (messageId: string) => {
-    setMessages(messages.filter((message) => message._id === messageId));
+    setMessages(messages.filter((message) => message._id !== messageId));
   };
 
   const { data: session } = useSession();
@@ -28,8 +28,8 @@ const UserDashboard = () => {
   const form = useForm({
     resolver: zodResolver(acceptMessageSchema),
   });
-  const { register, watch, setValue } = form;
 
+  const { register, watch, setValue } = form;
   const acceptMessages = watch("acceptMessages");
 
   const fetchAcceptMessages = useCallback(async () => {
@@ -41,7 +41,7 @@ const UserDashboard = () => {
       const axiosError = error as AxiosError<ApiResponse>;
       toast("Error", {
         description:
-          axiosError.response?.data.message ||
+          axiosError.response?.data.message ??
           "Failed to fetch message settings",
       });
     } finally {
@@ -54,7 +54,7 @@ const UserDashboard = () => {
       setIsLoading(true);
       setIsSwitchLoading(false);
       try {
-        const response = await axios.get<ApiResponse>("/get-messages");
+        const response = await axios.get<ApiResponse>("/api/get-messages");
         setMessages(response.data.messages || []);
         if (refresh) {
           toast("Refreshed messages!", {
@@ -94,7 +94,7 @@ const UserDashboard = () => {
       const axiosError = error as AxiosError<ApiResponse>;
       toast("Error", {
         description:
-          axiosError.response?.data.message ||
+          axiosError.response?.data.message ??
           "Failed to fetch message settings",
       });
     }
