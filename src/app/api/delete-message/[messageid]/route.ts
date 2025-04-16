@@ -28,7 +28,7 @@ export async function DELETE(
       { _id: user._id },
       { $pull: { messages: { _id: messageId } } }
     );
-    if (updatedResult.modifiedCount) {
+    if (updatedResult.modifiedCount === 0) {
       return Response.json(
         {
           success: false,

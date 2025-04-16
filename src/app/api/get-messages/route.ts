@@ -8,9 +8,9 @@ import mongoose from "mongoose";
 export async function GET(request: Request) {
   await dbConnect();
   const session = await getServerSession(authOptions);
-  const user: User = session?.user;
+  const _user: User = session?.user;
 
-  if (!session || !session.user) {
+  if (!session || !_user) {
     return Response.json(
       {
         success: false,
@@ -20,28 +20,40 @@ export async function GET(request: Request) {
     );
   }
 
-  const userId = new mongoose.Types.ObjectId(user._id);
+  const userId = new mongoose.Types.ObjectId(_user._id);
   try {
     const user = await UserModel.aggregate([
-      { $match: { id: userId } },
+      { $match: { _id: userId } },
       { $unwind: "$messages" },
       { $sort: { "messages.createdAt": -1 } },
       { $group: { _id: "$_id", messages: { $push: "$messages" } } },
-    ]);
+    ]).exec();
 
-    if (!user || user.length === 0) {
+    console.log(user);
+
+    if (!user) {
       return Response.json(
         {
           success: false,
           message: "User not found",
         },
-        { status: 401 }
+        { status: 404 }
+      );
+    }
+
+    if (user.length === 0) {
+      return Response.json(
+        {
+          success: false,
+          message: "No messages for the current user",
+        },
+        { status: 404 }
       );
     }
 
     return Response.json(
       {
-        success: false,
+        success: true,
         messages: user[0].messages,
       },
       { status: 200 }

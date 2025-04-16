@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       100000 + Math.random() * 900000
     ).toString();
     if (existingUserByEmail) {
-      if (existingUserByEmail.isVerfied) {
+      if (existingUserByEmail.isVerified) {
         return Response.json(
           {
             success: false,

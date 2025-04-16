@@ -22,8 +22,7 @@ const Navbar = () => {
               Welcome, {user?.username || user?.email}
             </span>
             <Button onClick={() => signOut()} className="w-full md:w-auto">
-              {" "}
-              Logout{" "}
+              Logout
             </Button>
           </>
         ) : (

@@ -23,7 +23,7 @@ const UserDashboard = () => {
     setMessages(messages.filter((message) => message._id !== messageId));
   };
 
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const form = useForm({
     resolver: zodResolver(acceptMessageSchema),
@@ -35,8 +35,8 @@ const UserDashboard = () => {
   const fetchAcceptMessages = useCallback(async () => {
     setIsSwitchLoading(true);
     try {
-      const response = await axios.get<ApiResponse>("/api/acccept-messages");
-      setValue("acceptMessages", Boolean(response.data.isAcceptingMessage));
+      const response = await axios.get<ApiResponse>("/api/accept-messages");
+      setValue("acceptMessages", Boolean(response.data.isAcceptingMessages));
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast("Error", {
@@ -65,8 +65,7 @@ const UserDashboard = () => {
         const axiosError = error as AxiosError<ApiResponse>;
         toast("Error", {
           description:
-            axiosError.response?.data.message ||
-            "Failed to fetch message settings",
+            axiosError.response?.data.message || "Failed to fetch messages",
         });
       } finally {
         setIsLoading(false);
@@ -99,6 +98,8 @@ const UserDashboard = () => {
       });
     }
   };
+
+  if (status === "loading") return <div>Loading...</div>;
 
   const { username } = session?.user;
   //TODO : do more research for making base url

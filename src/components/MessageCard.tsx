@@ -24,6 +24,7 @@ import { Message } from "@/model/User";
 import axios from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
 import { toast } from "sonner";
+import formatDate from "@/helpers/dateFormat";
 
 type MessageCardProps = {
   message: Message;
@@ -41,19 +42,18 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
           <AlertDialogTrigger asChild>
-            <Button variant="destructive" className="w-5 h-5">
+            <Button variant="destructive" className=" w-5 h-5">
               <X />
             </Button>
           </AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete the
-                message and remove the data from our servers.
+                Message wapas nahi aapaayega, screenshot le liya na bhai
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -64,14 +64,10 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
-        <CardDescription>Card Description</CardDescription>
+        <CardDescription>
+          {formatDate(message.createdAt.toString())}
+        </CardDescription>
       </CardHeader>
-      <CardContent>
-        <p>Card Content</p>
-      </CardContent>
-      <CardFooter>
-        <p>Card Footer</p>
-      </CardFooter>
     </Card>
   );
 };
