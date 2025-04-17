@@ -128,7 +128,7 @@ const UserDashboard = () => {
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="input input-bordered w-full py-2 px-4 mr-2 bg-gray-200 rounded-xl"
           />
           <Button onClick={copyToClipboard}>Copy</Button>
         </div>
