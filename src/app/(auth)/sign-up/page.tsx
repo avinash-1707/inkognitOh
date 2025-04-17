@@ -43,6 +43,11 @@ const page = () => {
 
   useEffect(() => {
     const checkUsernameUniqueness = async () => {
+      if (!username) {
+        setIsCheckingUserUsername(false);
+        setUsernameMessage("");
+        return;
+      }
       if (username) {
         setIsCheckingUserUsername(true);
         setUsernameMessage("");
