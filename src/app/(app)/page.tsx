@@ -2,8 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Badge, Bell, Shield, Zap } from "lucide-react";
-import Image from "next/image";
+import { Bell, Shield, Zap } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
