@@ -58,6 +58,7 @@ const SendMessage = () => {
       );
       toast("Message sent!", { description: response.data.message });
       setIsSubmitting(false);
+      form.setValue("content", "");
     } catch (error) {
       console.log("Error in signing up user : ", error);
       const axiosError = error as AxiosError<ApiResponse>;

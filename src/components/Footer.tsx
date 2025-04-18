@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
     <>
-      <div className="w-full p-4 md:p-6 shadow-md"></div>
+      <footer className="py-8 px-4 text-center text-gray-500 text-sm">
+        <p>© 2025 inkognitOh! — The Home of Anonymous Messaging</p>
+      </footer>
     </>
   );
 };
