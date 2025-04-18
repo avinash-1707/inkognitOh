@@ -9,13 +9,15 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   const handleGetStarted = () => {
+    router.push("/sign-in");
+  };
+  const handleJoin = () => {
     router.push("/sign-up");
   };
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4 md:px-6 lg:px-8 max-w-6xl mx-auto text-center">
-        <Badge className="mb-4 bg-black text-white">Now Available</Badge>
         <h1 className="text-6xl md:text-6xl lg:text-6xl font-bold mb-6">
           inkognitOh!
         </h1>
@@ -25,7 +27,7 @@ export default function Home() {
         </p>
         <Button
           size="lg"
-          className="font-bold text-lg bg-white text-black hover:bg-gray-800 px-8  whitespace-nowrap"
+          className="font-bold text-lg bg-white text-black hover:bg-gray-300 px-8  whitespace-nowrap"
           onClick={handleGetStarted}
         >
           Get Started
@@ -154,13 +156,16 @@ export default function Home() {
             <Button
               size="lg"
               className="bg-black text-white hover:bg-gray-800 px-8 whitespace-nowrap"
-              onClick={handleGetStarted}
+              onClick={handleJoin}
             >
               Create Your Profile
             </Button>
           </CardContent>
         </Card>
       </section>
+      <footer className="py-8 px-4 text-center text-gray-500 bg-black bottom-0 relative text-sm w-full">
+        <p>© 2025 inkognitOh! — The Home of Anonymous Messaging</p>
+      </footer>
     </div>
   );
 }
