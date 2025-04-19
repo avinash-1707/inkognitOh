@@ -3,23 +3,22 @@ import { authOptions } from "../../auth/[...nextauth]/option";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth";
-import { NextRequest } from "next/server";
 
 export async function DELETE(
-  request: NextRequest,
+  request: Request,
   { params }: { params: { messageid: string } }
 ) {
-  const { messageid: messageId } = params;
+  const messageId = params.messageid;
   await dbConnect();
   const session = await getServerSession(authOptions);
   const user: User = session?.user;
 
   if (!session || !session.user) {
-    return new Response(
-      JSON.stringify({
+    return Response.json(
+      {
         success: false,
         message: "Not authenticated!",
-      }),
+      },
       { status: 401 }
     );
   }
@@ -30,29 +29,29 @@ export async function DELETE(
       { $pull: { messages: { _id: messageId } } }
     );
     if (updatedResult.modifiedCount === 0) {
-      return new Response(
-        JSON.stringify({
+      return Response.json(
+        {
           success: false,
           message: "User not found or already deleted",
-        }),
+        },
         { status: 404 }
       );
     }
 
-    return new Response(
-      JSON.stringify({
+    return Response.json(
+      {
         success: true,
         message: "Message successfully deleted",
-      }),
+      },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error in deleting message route:", error);
-    return new Response(
-      JSON.stringify({
+    console.log("Error in deleting message route : ", error);
+    return Response.json(
+      {
         success: false,
         message: "Error while deleting message",
-      }),
+      },
       { status: 500 }
     );
   }
