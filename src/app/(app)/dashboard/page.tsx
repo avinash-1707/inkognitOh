@@ -19,6 +19,7 @@ const UserDashboard = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isSwitchLoading, setIsSwitchLoading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
 
   const handleDeleteMessage = (messageId: string) => {
     setMessages(messages.filter((message) => message._id !== messageId));
@@ -112,6 +113,7 @@ const UserDashboard = () => {
     toast("URL copied!", {
       description: "Profile url has been copied to clipboard",
     });
+    setIsCopied(true);
   };
 
   if (!session || !session.user) {
