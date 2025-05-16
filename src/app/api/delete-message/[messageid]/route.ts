@@ -4,17 +4,8 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth";
 
-interface RouteContext {
-  params: {
-    messageid: string;
-  };
-}
-
 // @ts-ignore - Bypass Vercel type checking
-export async function DELETE(
-  request: Request,
-  { params }: { params: { messageid: string } }
-) {
+export async function DELETE(request: Request, { params }: any) {
   const messageId = await params.messageid;
   await dbConnect();
   const session = await getServerSession(authOptions);
