@@ -3,6 +3,7 @@ import { authOptions } from "../../auth/[...nextauth]/option";
 import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/User";
 import { User } from "next-auth";
+import { NextRequest } from "next/server";
 
 interface RouteContext {
   params: {
@@ -10,7 +11,7 @@ interface RouteContext {
   };
 }
 
-export async function DELETE(request: Request, context: RouteContext) {
+export async function DELETE(request: NextRequest, context: RouteContext) {
   const messageId = await context.params.messageid;
   await dbConnect();
   const session = await getServerSession(authOptions);
