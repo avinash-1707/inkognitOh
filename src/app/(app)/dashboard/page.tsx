@@ -121,18 +121,20 @@ const UserDashboard = () => {
   }
 
   return (
-    <>
-      <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
-        <h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+    <div className="p-14 min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
+      <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white/10 bg-opacity-20 backdrop-blur-sm rounded-xl w-full max-w-6xl">
+        <h1 className="text-4xl font-bold mb-4 text-white">User Dashboard</h1>
 
         <div className="mb-4">
-          <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{" "}
+          <h2 className="text-lg font-semibold mb-2 text-white/70">
+            Copy Your Unique Link
+          </h2>{" "}
           <div className="flex items-center">
             <input
               type="text"
               value={profileUrl}
               disabled
-              className="input input-bordered w-full py-2 px-4 mr-2 bg-gray-200 rounded-xl"
+              className="input input-bordered w-full py-2 px-4 mr-2 bg-gray-700 rounded-xl"
             />
             <Button onClick={copyToClipboard}>Copy</Button>
           </div>
@@ -145,14 +147,14 @@ const UserDashboard = () => {
             onCheckedChange={handleSwitchChange}
             disabled={isSwitchLoading}
           />
-          <span className="ml-2">
+          <span className="ml-2 text-white/70">
             Accept Messages: {acceptMessages ? "On" : "Off"}
           </span>
         </div>
         <Separator />
 
         <Button
-          className="mt-4"
+          className="mt-4 bg-gray-800 hover:bg-gray-600"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
@@ -179,7 +181,7 @@ const UserDashboard = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

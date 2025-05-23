@@ -61,13 +61,15 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-600">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white/10 bg-opacity-20 backdrop-blur-sm p-4 rounded-b-xl shadow-lg shadow-black/50 rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl text-white font-extrabold tracking-tight lg:text-5xl mb-6">
             Go inkognitOh!
           </h1>
-          <p className="mb-4">Enter into your dungeon of secret messages 🤫</p>
+          <p className="mb-4 text-white/80">
+            Enter into your dungeon of secret messages 🤫
+          </p>
         </div>
         <Button
           className="w-full text-center mt-4"
@@ -109,7 +111,9 @@ const SignInPage = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email or Username</FormLabel>
+                    <FormLabel className="text-white">
+                      Email or Username
+                    </FormLabel>
                     <FormControl>
                       <Input placeholder="username / email" {...field} />
                     </FormControl>
@@ -124,7 +128,7 @@ const SignInPage = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel className="text-white">Password</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -144,7 +148,7 @@ const SignInPage = () => {
             </form>
           </Form>
           <div className="text-center mt-4">
-            <p>
+            <p className="text-white/60">
               Not a member yet?{" "}
               <Link
                 href="/sign-up"

@@ -39,7 +39,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
     onMessageDelete(message._id);
   };
   return (
-    <Card>
+    <Card className="bg-white/20 bg-opacity-20 backdrop-blur-sm border-black/90">
       <CardHeader>
         <CardTitle>{message.content}</CardTitle>
         <AlertDialog>
@@ -48,16 +48,21 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
               <X />
             </Button>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className="bg-black-600 bg-opacity-30 backdrop-blur-md">
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+              <AlertDialogTitle className="text-white">
+                Are you sure?
+              </AlertDialogTitle>
               <AlertDialogDescription>
                 Message wapas nahi aapaayega, screenshot le liya na bhai
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteConfirm}>
+              <AlertDialogAction
+                onClick={handleDeleteConfirm}
+                className="text-white bg-red-500 hover:bg-red-400"
+              >
                 Continue
               </AlertDialogAction>
             </AlertDialogFooter>

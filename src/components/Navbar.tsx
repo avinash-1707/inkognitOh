@@ -11,14 +11,17 @@ const Navbar = () => {
 
   const user: User = session?.user;
   return (
-    <nav className="p-4 md:p-6 shadow-md bg-gray-400">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/30 to-black/10 bg-opacity-20 backdrop-blur-sm p-4 rounded-b-md ">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-        <a href="/" className="text-xl font-bold mb-4 md:mb-0">
+        <a
+          href="/"
+          className="text-white text-2xl font-bold font-inter tracking-wide"
+        >
           inkognitOh!
         </a>
         {session ? (
           <>
-            <span className="mr-4">
+            <span className="mr-4 text-white/70 text-xl">
               Welcome, {user?.username || user?.email}
             </span>
             <Button onClick={() => signOut()} className="w-full md:w-auto">

@@ -103,13 +103,15 @@ const page = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-600">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white/10 bg-opacity-20 backdrop-blur-sm p-4 rounded-b-xl shadow-lg shadow-black/50 rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-white">
             Join inkognitOh!
           </h1>
-          <p className="mb-4">Sign up to make your inkognitOh space 👀</p>
+          <p className="mb-4 text-white">
+            Sign up to make your inkognitOh space 👀
+          </p>
         </div>
         <Button
           className="w-full text-center mt-4"
@@ -151,7 +153,7 @@ const page = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel className="text-white">Username</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="jamescamron1"
@@ -181,7 +183,7 @@ const page = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-white">Email</FormLabel>
                     <FormControl>
                       <Input placeholder="jcamron2001@mail" {...field} />
                     </FormControl>
@@ -196,7 +198,7 @@ const page = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel className="text-white">Password</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -223,7 +225,7 @@ const page = () => {
             </form>
           </Form>
           <div className="text-center mt-4">
-            <p>
+            <p className="text-white/60">
               Already a member?{" "}
               <Link
                 href="/sign-in"
