@@ -20,12 +20,16 @@ const MessageSchema: Schema<Message> = new Schema({
 export interface User extends Document {
   username: string;
   email: string;
-  password: string;
+  password?: string;
   verificationCode: string;
   verificationCodeExpiry: Date;
   isVerified: boolean;
   isAcceptingMessages: boolean;
   messages: Message[];
+  // Google OAuth fields
+  googleId?: string;
+  avatar?: string;
+  name?: string;
 }
 
 const UserSchema: Schema<User> = new Schema({
@@ -48,10 +52,12 @@ const UserSchema: Schema<User> = new Schema({
   verificationCode: {
     type: String,
     required: [true, "Verification code is required!"],
+    default: "101010",
   },
   verificationCodeExpiry: {
     type: Date,
     required: [true, "Expiry of verification code is required!"],
+    default: Date.now() + 3 * 24 * 60 * 60,
   },
   isVerified: {
     type: Boolean,
@@ -62,6 +68,18 @@ const UserSchema: Schema<User> = new Schema({
     default: true,
   },
   messages: [MessageSchema],
+  // Google OAuth fields
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true, // Allows multiple null values
+  },
+  avatar: {
+    type: String,
+  },
+  name: {
+    type: String,
+  },
 });
 
 const UserModel =
