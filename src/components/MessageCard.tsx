@@ -2,7 +2,6 @@
 import {
   Card,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -18,7 +17,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "./ui/button";
-import { X } from "lucide-react";
+import { Trash2, X } from "lucide-react";
 import { Message } from "@/model/User";
 import axios from "axios";
 import { ApiResponse } from "@/types/ApiResponse";
@@ -41,36 +40,36 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
   return (
     <Card className="bg-white/20 bg-opacity-20 backdrop-blur-sm border-black/90">
       <CardHeader>
-        <CardTitle>{message.content}</CardTitle>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="outline" className="bg-red-300 px-2 w-5 h-5">
-              <X />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent className="bg-black-600 bg-opacity-30 backdrop-blur-md">
-            <AlertDialogHeader>
-              <AlertDialogTitle className="text-white">
-                Are you sure?
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                Message wapas nahi aapaayega, screenshot le liya na bhai
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                onClick={handleDeleteConfirm}
-                className="text-white bg-red-500 hover:bg-red-400"
-              >
-                Continue
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <CardTitle className="text-white text-md">{message.content}</CardTitle>
         <CardDescription>
           {formatDate(message.createdAt.toString())}
         </CardDescription>
+        <div>
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Trash2 className="text-red-300 h-5 w-5  mt-2 rounded-xl hover:text-red-500" />
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-black-600 bg-opacity-30 backdrop-blur-md">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-white">
+                  Are you sure?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Message wapas nahi aapaayega, screenshot le liya na bhai
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={handleDeleteConfirm}
+                  className="text-white bg-red-500 hover:bg-red-400"
+                >
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
       </CardHeader>
     </Card>
   );

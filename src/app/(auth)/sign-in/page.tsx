@@ -115,7 +115,11 @@ const SignInPage = () => {
                       Email or Username
                     </FormLabel>
                     <FormControl>
-                      <Input placeholder="username / email" {...field} />
+                      <Input
+                        className="text-white"
+                        placeholder="username / email"
+                        {...field}
+                      />
                     </FormControl>
 
                     <FormMessage />
@@ -131,6 +135,7 @@ const SignInPage = () => {
                     <FormLabel className="text-white">Password</FormLabel>
                     <FormControl>
                       <Input
+                        className="text-white"
                         type="password"
                         placeholder="password"
                         {...field}

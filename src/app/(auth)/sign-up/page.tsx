@@ -156,6 +156,7 @@ const page = () => {
                     <FormLabel className="text-white">Username</FormLabel>
                     <FormControl>
                       <Input
+                        className="text-white"
                         placeholder="jamescamron1"
                         {...field}
                         onChange={(e) => {
@@ -185,7 +186,11 @@ const page = () => {
                   <FormItem>
                     <FormLabel className="text-white">Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="jcamron2001@mail" {...field} />
+                      <Input
+                        className="text-white"
+                        placeholder="jcamron2001@mail"
+                        {...field}
+                      />
                     </FormControl>
 
                     <FormMessage />
@@ -201,6 +206,7 @@ const page = () => {
                     <FormLabel className="text-white">Password</FormLabel>
                     <FormControl>
                       <Input
+                        className="text-white"
                         type="password"
                         placeholder="password"
                         {...field}
