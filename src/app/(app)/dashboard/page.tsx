@@ -9,7 +9,7 @@ import { acceptMessageSchema } from "@/schemas/acceptMessageSchema";
 import { ApiResponse } from "@/types/ApiResponse";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { Loader2, RefreshCcw } from "lucide-react";
+import { Copy, CopyCheck, Loader2, RefreshCcw } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { use, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -109,11 +109,11 @@ const UserDashboard = () => {
   const profileUrl = `${baseUrl}/u/${username}`;
 
   const copyToClipboard = () => {
+    setIsCopied(true);
     navigator.clipboard.writeText(profileUrl);
     toast("URL copied!", {
       description: "Profile url has been copied to clipboard",
     });
-    setIsCopied(true);
   };
 
   if (!session || !session.user) {
@@ -121,12 +121,14 @@ const UserDashboard = () => {
   }
 
   return (
-    <div className="p-14 min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900">
-      <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white/10 bg-opacity-20 backdrop-blur-sm rounded-xl w-full max-w-6xl">
-        <h1 className="text-4xl font-bold mb-4 text-white">User Dashboard</h1>
+    <div className="p-14 min-h-screen">
+      <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 w-full max-w-5xl">
+        <h1 className="text-4xl text-center font-semibold mb-12">
+          Hi, {username}
+        </h1>
 
         <div className="mb-4">
-          <h2 className="text-lg font-semibold mb-2 text-white/70">
+          <h2 className="text-md font-semibold mb-2 text-black/80 dark:text-white/80">
             Copy Your Unique Link
           </h2>{" "}
           <div className="flex items-center">
@@ -134,27 +136,29 @@ const UserDashboard = () => {
               type="text"
               value={profileUrl}
               disabled
-              className="input input-bordered w-full py-2 px-4 mr-2 bg-gray-700 rounded-xl"
+              className="input input-bordered w-full py-2 px-4 mr-2 bg-gray-200 dark:bg-gray-800 rounded-xl"
             />
-            <Button onClick={copyToClipboard}>Copy</Button>
+            <Button onClick={copyToClipboard}>
+              {isCopied ? <CopyCheck /> : <Copy />}
+            </Button>
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-6 flex items-center">
           <Switch
             {...register("acceptMessages")}
             checked={acceptMessages}
             onCheckedChange={handleSwitchChange}
             disabled={isSwitchLoading}
           />
-          <span className="ml-2 text-white/70">
-            Accept Messages: {acceptMessages ? "On" : "Off"}
+          <span className="ml-2 dark:text-white/70 text-black/70">
+            Are you accepting messages: {acceptMessages ? "Yes" : "No"}
           </span>
         </div>
         <Separator />
 
         <Button
-          className="mt-4 bg-gray-800 hover:bg-gray-600"
+          className="mt-4"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();

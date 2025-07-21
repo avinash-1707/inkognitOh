@@ -173,7 +173,7 @@ const page = () => {
                       <Loader2 className="animate-spin" />
                     )}
                     <p
-                      className={`text-sm ${usernameMessage === "Username is available" ? "text-green-300 dark:text-green-800" : "text-red-400 dark:text-red-800"}`}
+                      className={`text-sm ${usernameMessage === "Username is available" ? "text-green-400 dark:text-green-700" : "text-red-400 dark:text-red-700"}`}
                     >
                       {usernameMessage}
                     </p>

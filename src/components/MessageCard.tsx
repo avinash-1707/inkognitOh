@@ -38,11 +38,13 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
     onMessageDelete(message._id);
   };
   return (
-    <Card className="bg-white/20 bg-opacity-20 backdrop-blur-sm border-black/90">
+    <Card className="bg-black/10 dark:bg-white/10 bg-opacity-20 backdrop-blur-sm shadow-md">
       <CardHeader>
-        <CardTitle className="text-white text-md">{message.content}</CardTitle>
+        <CardTitle className="text-xl">{message.content}</CardTitle>
         <CardDescription>
-          {formatDate(message.createdAt.toString())}
+          <span className="text-neutral-500 text-sm">
+            {formatDate(message.createdAt.toString())}
+          </span>
         </CardDescription>
         <div>
           <AlertDialog>
