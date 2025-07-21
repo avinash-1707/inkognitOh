@@ -5,6 +5,9 @@ import Navbar from "@/components/Navbar";
 export const metadata: Metadata = {
   title: "inkognitOh!",
   description: "This is the user dashboard.",
+  icons: {
+    icon: "/web-favicon.png",
+  },
 };
 
 export default function RootLayout({

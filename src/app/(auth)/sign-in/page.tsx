@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 import { Separator } from "@/components/ui/separator";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const SignInPage = () => {
   const router = useRouter();
@@ -61,18 +62,21 @@ const SignInPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white/10 bg-opacity-20 backdrop-blur-sm p-4 rounded-b-xl shadow-lg shadow-black/50 rounded-lg shadow-md">
+    <div className="relative flex justify-center items-center min-h-screen">
+      <div className="absolute top-5 right-5">
+        <ModeToggle />
+      </div>
+      <div className="w-full max-w-lg p-8 space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl text-white font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">
             Go inkognitOh!
           </h1>
-          <p className="mb-4 text-white/80">
+          <p className="mb-3 text-neutral-800 dark:text-neutral-300">
             Enter into your dungeon of secret messages 🤫
           </p>
         </div>
         <Button
-          className="w-full text-center mt-4"
+          className="w-full text-center mt-3"
           onClick={handleGoogleSignIn}
         >
           Sign In with Google{" "}
@@ -111,12 +115,10 @@ const SignInPage = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">
-                      Email or Username
-                    </FormLabel>
+                    <FormLabel>Email or Username</FormLabel>
                     <FormControl>
                       <Input
-                        className="text-white"
+                        className="border-neutral-300 dark:border-0"
                         placeholder="username / email"
                         {...field}
                       />
@@ -132,10 +134,10 @@ const SignInPage = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">Password</FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
-                        className="text-white"
+                        className="border-neutral-300 dark:border-0"
                         type="password"
                         placeholder="password"
                         {...field}
@@ -147,17 +149,17 @@ const SignInPage = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full my-3">
                 Sign in
               </Button>
             </form>
           </Form>
-          <div className="text-center mt-4">
-            <p className="text-white/60">
+          <div className="text-center mt-4 text-sm">
+            <p className="text-neutral-500">
               Not a member yet?{" "}
               <Link
                 href="/sign-up"
-                className="text-blue-600 hover:text-blue-800"
+                className="text-blue-400 dark:text-blue-900 hover:text-blue-500 dark:hover:text-blue-800"
               >
                 Sign up
               </Link>
