@@ -6,13 +6,14 @@ import { useSession, signOut } from "next-auth/react";
 import { User } from "next-auth";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import { ModeToggle } from "./mode-toggle";
 
 const Navbar = () => {
   const { data: session } = useSession();
 
   const user: User = session?.user;
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/30 to-black/10 bg-opacity-20 backdrop-blur-sm p-4 rounded-b-md ">
+    <nav className="absolute top-0 left-0 w-full z-20 py-4 px-10 ">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/">
           <Image
@@ -21,28 +22,28 @@ const Navbar = () => {
             height={120}
             width={120}
             priority={true}
-            className="w-auto h-auto"
+            className="w-auto h-auto dark:invert-0 invert"
           />
         </Link>
-        {session ? (
-          <>
-            <span className="mr-4 text-white/70 text-xl">
-              Welcome, {user?.username || user?.email}
-            </span>
-            <Button onClick={() => signOut()} className="w-full md:w-auto">
-              Logout
-            </Button>
-          </>
-        ) : (
-          <Link href="/sign-in">
-            <Button
-              variant="outline"
-              className="w-full cursor-pointer md:w-auto"
-            >
-              Login
-            </Button>
-          </Link>
-        )}
+        <div className="flex gap-3 items-center">
+          <ModeToggle />
+          {session ? (
+            <>
+              <Button
+                onClick={() => signOut()}
+                className="w-full md:w-auto rounded-2xl"
+              >
+                Logout
+              </Button>
+            </>
+          ) : (
+            <Link href="/sign-in">
+              <Button className="w-full md:w-auto rounded-3xl text-[13px] h-7.5 px-7">
+                Login
+              </Button>
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );

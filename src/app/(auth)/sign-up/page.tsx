@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { signIn } from "next-auth/react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const page = () => {
   const [username, setUsername] = useState("");
@@ -103,18 +104,21 @@ const page = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white/10 bg-opacity-20 backdrop-blur-sm p-4 rounded-b-xl shadow-lg shadow-black/50 rounded-lg shadow-md">
+    <div className="relative flex justify-center items-center min-h-screen">
+      <div className="absolute top-5 right-5">
+        <ModeToggle />
+      </div>
+      <div className="w-full max-w-lg p-8 space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-white">
+          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-2">
             Join inkognitOh!
           </h1>
-          <p className="mb-4 text-white">
+          <p className="mb-3 text-neutral-800 dark:text-neutral-300">
             Sign up to make your inkognitOh space 👀
           </p>
         </div>
         <Button
-          className="w-full text-center mt-4"
+          className="w-full text-center mt-3"
           onClick={handleGoogleSignIn}
         >
           Continue with Google{" "}
@@ -147,16 +151,16 @@ const page = () => {
         <Separator />
         <div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               <FormField
                 name="username"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">Username</FormLabel>
+                    <FormLabel>Username</FormLabel>
                     <FormControl>
                       <Input
-                        className="text-white"
+                        className="border-neutral-300 dark:border-0"
                         placeholder="jamescamron1"
                         {...field}
                         onChange={(e) => {
@@ -169,7 +173,7 @@ const page = () => {
                       <Loader2 className="animate-spin" />
                     )}
                     <p
-                      className={`text-sm ${usernameMessage === "Username is available" ? "text-green-500" : "text-red-500"}`}
+                      className={`text-sm ${usernameMessage === "Username is available" ? "text-green-300 dark:text-green-800" : "text-red-400 dark:text-red-800"}`}
                     >
                       {usernameMessage}
                     </p>
@@ -184,15 +188,17 @@ const page = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">Email</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
-                        className="text-white"
+                        className="border-neutral-300 dark:border-0"
                         placeholder="jcamron2001@mail"
                         {...field}
                       />
                     </FormControl>
-
+                    <p className="text-xs text-neutral-500">
+                      You will recieve a verification code
+                    </p>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -203,10 +209,10 @@ const page = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white">Password</FormLabel>
+                    <FormLabel>Password</FormLabel>
                     <FormControl>
                       <Input
-                        className="text-white"
+                        className="border-neutral-300 dark:border-0"
                         type="password"
                         placeholder="password"
                         {...field}
@@ -218,7 +224,7 @@ const page = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full my-3">
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please
@@ -230,12 +236,12 @@ const page = () => {
               </Button>
             </form>
           </Form>
-          <div className="text-center mt-4">
-            <p className="text-white/60">
+          <div className="text-center mt-4 text-sm">
+            <p className="text-neutral-500">
               Already a member?{" "}
               <Link
                 href="/sign-in"
-                className="text-blue-600 hover:text-blue-800"
+                className="text-blue-400 dark:text-blue-900 hover:text-blue-500 dark:hover:text-blue-800"
               >
                 Sign in
               </Link>
