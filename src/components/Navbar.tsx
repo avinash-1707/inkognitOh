@@ -30,7 +30,7 @@ const Navbar = () => {
           {session ? (
             <>
               <Button
-                onClick={() => signOut()}
+                onClick={() => signOut({ callbackUrl: "/" })}
                 className="w-full md:w-auto rounded-2xl"
               >
                 Logout
