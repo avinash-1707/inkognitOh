@@ -1,6 +1,8 @@
-import { resend } from "@/lib/resend";
+import React from "react";
+import nodemailer from "nodemailer";
 import VerificationEmail from "../../emails/VerificationEmail";
 import { ApiResponse } from "@/types/ApiResponse";
+import { render } from "@react-email/render";
 
 export async function sendVerificationEmail(
   email: string,
@@ -8,15 +10,27 @@ export async function sendVerificationEmail(
   verificationCode: string
 ): Promise<ApiResponse> {
   try {
-    await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    // Send mail
+    await transporter.sendMail({
+      from: `"InkognitOh!" <${process.env.SMTP_FROM_EMAIL}>`,
       to: email,
       subject: "inkognitOh! | Verification email",
-      react: VerificationEmail({ username, otp: verificationCode }),
+      html: VerificationEmail({ username, otp: verificationCode }),
     });
+
     return { success: true, message: "Verification email sent successfully" };
   } catch (emailError) {
-    console.log("Error in sending verification email", emailError);
+    console.error("❌ Error in sending verification email:", emailError);
     return { success: false, message: "Failed to send verification email" };
   }
 }

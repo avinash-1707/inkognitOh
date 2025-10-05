@@ -47,13 +47,15 @@ const VerifyAccount = () => {
     }
   };
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-600">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-black">
+      <div className="w-full max-w-md p-8 space-y-8 bg-neutral-800 rounded-2xl shadow-xl">
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+          <h2 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-white">
             Verify your account
           </h2>
-          <p className="mb-4">Enter the verification code sent to your email</p>
+          <p className="mb-6 text-gray-300">
+            Enter the verification code sent to your email
+          </p>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
@@ -61,15 +63,23 @@ const VerifyAccount = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Verification Code</FormLabel>
+                    <FormLabel className="text-gray-200">
+                      Verification Code
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="code" {...field} />
+                      <Input
+                        placeholder="code"
+                        {...field}
+                        className="bg-neutral-700 text-white placeholder-gray-400 border-none focus:ring-2 focus:ring-indigo-500 rounded-lg"
+                      />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg py-2">
+                Submit
+              </Button>
             </form>
           </Form>
         </div>
