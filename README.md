@@ -26,4 +26,6 @@
    ```bash
    git clone https://github.com/avinash-1707/inkognitOh.git
    cd inkognitOh
+   npm install
    npm run dev
+   ```
